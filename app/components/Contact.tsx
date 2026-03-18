@@ -175,7 +175,7 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <p>© 2024 Trissaan A Shanmugasundaram. Built with Next.js, Tailwind CSS, and Framer Motion.</p>
+          <p>© 2026 Trissaan A Shanmugasundaram. Built with Next.js, Tailwind CSS, and Framer Motion.</p>
           <p>
             Also view my portfolio on{' '}
             <a

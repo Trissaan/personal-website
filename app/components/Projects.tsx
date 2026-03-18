@@ -6,6 +6,12 @@ import { Github, ExternalLink } from 'lucide-react'
 export default function Projects() {
   const projects = [
     {
+      title: 'Email Insights Agent',
+      description: 'AI-powered email analysis system using Claude that fetches emails from Gmail, categorizes them, extracts action items, identifies VIP senders, and generates inbox insights. Features three run modes: one-time analysis, manual force-run, and daily cron daemon.',
+      tech: ['Python', 'Claude API', 'Gmail API', 'FastAPI', 'Rich CLI'],
+      link: 'https://github.com/trissaan/email-insights-agent',
+    },
+    {
       title: 'AI Job Application Automation Agent',
       description: 'End-to-end AI-powered platform that scrapes job listings, generates tailored resumes and cover letters using LLM APIs.',
       tech: ['Python', 'FastAPI', 'Playwright', 'LLM APIs'],
