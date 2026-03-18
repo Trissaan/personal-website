@@ -12,6 +12,9 @@ out/
 .env.test.local
 .env.production.local
 
+# Resume files
+*.docx
+
 # IDE
 .vscode/
 .idea/
