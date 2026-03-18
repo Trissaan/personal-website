@@ -6,7 +6,10 @@
       "Bash(npm run:*)",
       "Bash(vercel deploy:*)",
       "Bash(cd:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
