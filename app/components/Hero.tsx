@@ -44,7 +44,7 @@ export default function Hero() {
 
         <motion.div variants={itemVariants}>
           <p className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-6">
-            AI/Data Scientist | LLM Systems | ML Pipelines
+            Data Analyst & AI Practitioner | SQL · Python · Power BI
           </p>
         </motion.div>
 
