@@ -7,9 +7,9 @@ export default function Projects() {
   const projects = [
     {
       title: 'Email Insights Agent',
-      description: 'AI-powered email analysis system using Claude that fetches emails from Gmail, categorizes them, extracts action items, identifies VIP senders, and generates inbox insights. Features three run modes: one-time analysis, manual force-run, and daily cron daemon.',
-      tech: ['Python', 'Claude API', 'Gmail API', 'FastAPI', 'Rich CLI'],
-      link: 'https://github.com/trissaan/email-insights-agent',
+      description: 'AI-powered email management system with two modes: batch analysis (categorization, action items, VIP detection) and real-time conversational interface. Text WhatsApp or SMS to manage your inbox via Claude with tool-use reasoning. Features Gmail OAuth with send/reply capabilities, Twilio integration, conversation history, and daily cron daemon.',
+      tech: ['Python', 'Claude API', 'Gmail API', 'Flask', 'Twilio', 'Rich CLI'],
+      link: 'https://github.com/Trissaan/email-insights-agent',
     },
     {
       title: 'AI Job Application Automation Agent',
