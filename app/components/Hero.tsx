@@ -1,171 +1,222 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, ArrowDown } from 'lucide-react'
+import { ArrowDown, ArrowRight } from 'lucide-react'
+import { appleEasing } from '../lib/animations'
+
+const terminalLines = [
+  { text: '$ spark-submit pipeline.py --env prod', type: 'command' },
+  { text: 'Loading 15,432 records from PostgreSQL...', type: 'info' },
+  { text: 'Running validation gates...', type: 'info' },
+  { text: '✓ Schema check passed', type: 'success' },
+  { text: '✓ Anomaly detection — 0 flags', type: 'success' },
+  { text: 'Transforming with PySpark...', type: 'info' },
+  { text: '✓ 12 DAX measures refreshed', type: 'success' },
+  { text: '✓ Dashboard synced to Power BI', type: 'success' },
+  { text: 'Pipeline complete — 4.2s', type: 'done' },
+]
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  }
+  const [visibleLines, setVisibleLines] = useState(0)
+  const [cycle, setCycle] = useState(0)
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
+  useEffect(() => {
+    if (visibleLines < terminalLines.length) {
+      const delay = visibleLines === 0 ? 1500 : 500 + Math.random() * 400
+      const timeout = setTimeout(() => setVisibleLines((v) => v + 1), delay)
+      return () => clearTimeout(timeout)
+    }
+    const timeout = setTimeout(() => {
+      setVisibleLines(0)
+      setCycle((c) => c + 1)
+    }, 3500)
+    return () => clearTimeout(timeout)
+  }, [visibleLines])
 
   return (
-    <section className="min-h-screen pt-32 pb-20 px-6 flex items-center justify-center relative overflow-hidden">
-      {/* Background gradient blob */}
-      <div className="absolute -top-40 -left-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background layers */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07080d] via-[#0a0c16] to-[#0d1020]" />
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(6,182,212,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.5) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div
+          className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[150px]"
+          style={{ animation: 'float-orb 12s ease-in-out infinite' }}
+        />
+        <div
+          className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-indigo-600/8 rounded-full blur-[130px]"
+          style={{ animation: 'float-orb-reverse 15s ease-in-out infinite' }}
+        />
+        <div className="absolute inset-0 bg-black/25" />
+      </div>
 
-      <motion.div
-        className="max-w-6xl mx-auto z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Left Column - Text Content */}
+      <div className="absolute inset-0 film-grain pointer-events-none z-[2]" />
+      <div className="absolute inset-0 vignette pointer-events-none z-[2]" />
+
+      {/* Two-column content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-24 lg:pt-0">
+        {/* Left — Editorial text */}
         <div>
-          <motion.div variants={itemVariants} className="mb-8">
-            <span className="inline-block px-4 py-2 rounded-full border border-green-500/40 text-green-400 text-sm font-semibold tracking-wider uppercase">
-              Available for Opportunities
-            </span>
-          </motion.div>
+          <motion.p
+            className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-cyan-400/70 mb-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: appleEasing }}
+          >
+            Trissaan A. Shanmugasundaram
+          </motion.p>
 
-          <motion.div variants={itemVariants}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              <span className="text-white">Data Engineer</span>
-              <br />
-              <span className="hero-gradient-text">Building Scalable</span>
-              <br />
-              <span className="text-white">Data Pipelines</span>
-            </h1>
-          </motion.div>
+          <motion.h1
+            className="font-display text-4xl md:text-5xl lg:text-[3.5rem] xl:text-7xl text-white mb-8 leading-[1.08] tracking-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: appleEasing }}
+          >
+            I don&apos;t just
+            <br />
+            analyse data.
+            <br />
+            <span className="hero-gradient-text italic">I build systems</span>
+            <br />
+            <span className="hero-gradient-text italic">that act on it.</span>
+          </motion.h1>
 
-          <motion.div variants={itemVariants}>
-            <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-xl leading-relaxed">
-              Experienced in designing, optimizing, and automating large-scale data pipelines using PySpark, Databricks, and AWS across logistics, telecom, and finance sectors.
-            </p>
-          </motion.div>
+          <motion.p
+            className="text-base md:text-lg text-gray-400 mb-3 max-w-lg font-light leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7, ease: appleEasing }}
+          >
+            MS Data Science &middot; AWS Certified Data Engineer &middot; 2+ years building
+            production data systems for Mondelez, Nestl&eacute;, L&apos;Or&eacute;al, and Asahi.
+          </motion.p>
+
+          <motion.p
+            className="text-sm text-gray-600 mb-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.9, ease: appleEasing }}
+          >
+            Melbourne, Australia &middot; Open to Work &middot; Full work rights (485 visa, valid Feb 2028)
+          </motion.p>
 
           <motion.div
-            variants={itemVariants}
-            className="flex gap-4 flex-wrap"
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0, ease: appleEasing }}
           >
             <motion.a
               href="#contact"
-              className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="group px-8 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-all flex items-center gap-2 text-sm"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <Mail size={20} />
               Get in Touch
+              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </motion.a>
-
             <motion.a
-              href="#projects"
-              className="flex items-center gap-2 px-8 py-4 border border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-gray-400 hover:text-white transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              href="/resume.pdf"
+              target="_blank"
+              className="px-8 py-3.5 border border-white/15 text-white font-medium rounded-full hover:border-white/30 hover:bg-white/5 transition-all text-sm"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              View Projects
+              Resume
             </motion.a>
           </motion.div>
         </div>
 
-        {/* Right Column - Code Snippet */}
+        {/* Right — Animated terminal */}
         <motion.div
-          variants={itemVariants}
           className="hidden lg:block"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: appleEasing }}
         >
-          <div className="bg-slate-900/80 border border-slate-700/50 rounded-2xl p-8 font-mono text-sm md:text-base shadow-2xl">
-            {/* Window dots */}
-            <div className="flex gap-2 mb-6">
-              <div className="w-3.5 h-3.5 rounded-full bg-red-500" />
-              <div className="w-3.5 h-3.5 rounded-full bg-yellow-500" />
-              <div className="w-3.5 h-3.5 rounded-full bg-green-500" />
-            </div>
+          <div className="relative">
+            {/* Glow behind terminal */}
+            <div className="absolute -inset-6 bg-cyan-500/[0.04] rounded-3xl blur-3xl" />
 
-            {/* Code content */}
-            <div className="space-y-2 text-[15px] leading-relaxed">
-              <p>
-                <span className="text-blue-400">class</span>{' '}
-                <span className="text-green-400">DataEngineer</span>
-                <span className="text-gray-300">(</span>
-                <span className="text-yellow-300">Trissaan</span>
-                <span className="text-gray-300">):</span>
-              </p>
-              <p className="pl-6">
-                <span className="text-gray-300">stack</span>
-                <span className="text-gray-500"> = </span>
-                <span className="text-gray-300">[</span>
-                <span className="text-amber-300">&quot;PySpark&quot;</span>
-                <span className="text-gray-300">, </span>
-                <span className="text-amber-300">&quot;AWS&quot;</span>
-                <span className="text-gray-300">, </span>
-                <span className="text-amber-300">&quot;SQL&quot;</span>
-                <span className="text-gray-300">]</span>
-              </p>
-              <p className="pl-6">
-                <span className="text-gray-300">tools</span>
-                <span className="text-gray-500"> = </span>
-                <span className="text-gray-300">[</span>
-                <span className="text-amber-300">&quot;Databricks&quot;</span>
-                <span className="text-gray-300">, </span>
-                <span className="text-amber-300">&quot;Glue&quot;</span>
-                <span className="text-gray-300">]</span>
-              </p>
-              <p className="pl-6">
-                <span className="text-gray-300">data</span>
-                <span className="text-gray-500"> = </span>
-                <span className="text-gray-300">[</span>
-                <span className="text-amber-300">&quot;Delta Lake&quot;</span>
-                <span className="text-gray-300">, </span>
-                <span className="text-amber-300">&quot;Snowflake&quot;</span>
-                <span className="text-gray-300">]</span>
-              </p>
-              <p className="pl-6">
-                <span className="text-gray-300">cert</span>
-                <span className="text-gray-500"> = </span>
-                <span className="text-amber-300">&quot;AWS Data Engineer&quot;</span>
-              </p>
-              <p className="mt-2 pl-6">
-                <span className="text-blue-400">def</span>{' '}
-                <span className="text-green-400">build_pipeline</span>
-                <span className="text-gray-300">(self):</span>
-              </p>
-              <p className="pl-12">
-                <span className="text-purple-400">return</span>{' '}
-                <span className="text-amber-300">&quot;production_ready&quot;</span>{' '}
-                <span role="img" aria-label="rocket">🚀</span>
-              </p>
+            {/* Terminal window */}
+            <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] bg-[#0d1117]/90 backdrop-blur-xl shadow-2xl">
+              {/* Title bar */}
+              <div className="flex items-center gap-2 px-5 py-3.5 border-b border-white/5 bg-white/[0.02]">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                  <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                </div>
+                <span className="font-mono text-xs text-gray-500 ml-3">pipeline.py — production</span>
+              </div>
+
+              {/* Terminal content */}
+              <div className="p-5 font-mono text-[13px] leading-relaxed space-y-2 min-h-[300px]">
+                {terminalLines.slice(0, visibleLines).map((line, i) => (
+                  <motion.div
+                    key={`${cycle}-${i}`}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className={
+                      line.type === 'command'
+                        ? 'text-cyan-300'
+                        : line.type === 'success'
+                          ? 'text-emerald-400'
+                          : line.type === 'done'
+                            ? 'text-amber-300 font-semibold'
+                            : 'text-gray-500'
+                    }
+                  >
+                    {line.text}
+                  </motion.div>
+                ))}
+                {visibleLines < terminalLines.length && (
+                  <motion.span
+                    className="inline-block w-2 h-[18px] bg-cyan-400/80 rounded-[1px]"
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.7, repeat: Infinity }}
+                  />
+                )}
+                {visibleLines >= terminalLines.length && (
+                  <motion.p
+                    className="text-gray-600 text-xs mt-4 font-mono"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    Waiting for next run...
+                  </motion.p>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <span className="text-[10px] tracking-[0.3em] uppercase text-gray-600 font-mono">Scroll</span>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+          <ArrowDown size={16} className="text-gray-600" />
+        </motion.div>
       </motion.div>
 
-      {/* Scroll down arrow */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <a href="#about" className="text-gray-400 hover:text-cyan-400 transition-colors">
-          <ArrowDown size={32} />
-        </a>
-      </motion.div>
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0d1020] to-transparent z-[3]" />
     </section>
   )
 }

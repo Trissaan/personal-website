@@ -263,7 +263,7 @@ The custom dataset approach ensures the model handles real-world variations in l
       'Optimizing inference speed for real-time traffic applications',
     ],
     tech: ['Python', 'TensorFlow', 'Deep CNN', 'Image Processing', 'Data Augmentation'],
-    link: 'https://github.com/trissaan',
+    link: 'https://github.com/trissaan/Road-Sign-Classification',
   },
 ]
 

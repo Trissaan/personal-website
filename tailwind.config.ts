@@ -11,6 +11,11 @@ const config: Config = {
         primary: '#0f172a',
         secondary: '#1e293b',
       },
+      fontFamily: {
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+      },
     },
   },
   plugins: [],

@@ -1,27 +1,25 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
+import WhatYouDo from './components/WhatYouDo'
+import BigFlex from './components/BigFlex'
+import BusinessImpact from './components/BusinessImpact'
 import Projects from './components/Projects'
-import Education from './components/Education'
-import OpenToWork from './components/OpenToWork'
-import Blog from './components/Blog'
-import Contact from './components/Contact'
+import Engineering from './components/Engineering'
+import Thinking from './components/Thinking'
+import CTA from './components/CTA'
 
 export default function Home() {
   return (
     <main className="w-full overflow-hidden">
       <Navbar />
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
+      <WhatYouDo />
+      <BigFlex />
+      <BusinessImpact />
       <Projects />
-      <Education />
-      <OpenToWork />
-      <Blog />
-      <Contact />
+      <Engineering />
+      <Thinking />
+      <CTA />
     </main>
   )
 }

@@ -8,18 +8,17 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#experience', label: 'Experience' },
+    { href: '#work', label: 'What I Do' },
+    { href: '#agent', label: 'AI Agent' },
     { href: '#projects', label: 'Projects' },
-    { href: '#education', label: 'Education' },
-    { href: '#open-to-work', label: 'Open to Work' },
+    { href: '#impact', label: 'Impact' },
+    { href: '#engineering', label: 'Engineering' },
     { href: '#contact', label: 'Contact' },
   ]
 
   return (
     <motion.nav
-      className="fixed top-0 w-full z-50 bg-black/50 dark:bg-black/50 backdrop-blur-lg border-b border-cyan-500/10 dark:border-cyan-500/10 transition-colors"
+      className="fixed top-0 w-full z-50 bg-black/30 backdrop-blur-xl border-b border-white/5 transition-colors"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -39,18 +38,18 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-gray-300 hover:text-cyan-400 transition-colors"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
             >
               {link.label}
             </a>
           ))}
           <motion.a
             href="#contact"
-            className="px-6 py-2 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-all"
+            className="px-6 py-2 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all text-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Hire Me
+            Let&apos;s Talk
           </motion.a>
         </div>
 
@@ -66,7 +65,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <motion.div
-          className="md:hidden bg-slate-900 border-t border-cyan-500/10"
+          className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/5"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
@@ -76,7 +75,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 hover:text-cyan-400 transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -84,10 +83,10 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className="px-6 py-2 bg-cyan-500 text-black font-semibold rounded-lg text-center hover:bg-cyan-400 transition-all"
+              className="px-6 py-2 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition-all"
               onClick={() => setIsOpen(false)}
             >
-              Hire Me
+              Let&apos;s Talk
             </a>
           </div>
         </motion.div>
