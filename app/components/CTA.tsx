@@ -3,6 +3,10 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { viewportConfig, appleEasing } from '../lib/animations'
+import DagBackground from './DagBackground'
+import MagneticWrapper from './MagneticWrapper'
+import { useState } from 'react'
+import { Check } from 'lucide-react'
 
 const socials = [
   { icon: Github, href: 'https://github.com/trissaan', label: 'GitHub' },
@@ -11,19 +15,30 @@ const socials = [
 ]
 
 export default function CTA() {
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('trissaan@gmail.com')
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // clipboard unavailable — silently fall through to mailto
+    }
+  }
+
   return (
     <section id="contact" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090c18] via-[#080a14] to-[#07080d]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-600/5 rounded-full blur-[180px]" style={{ animation: 'pulse-glow 6s ease-in-out infinite' }} />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-indigo-600/4 rounded-full blur-[120px]" style={{ animation: 'float-orb 15s ease-in-out infinite' }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-800 via-carbon-900 to-carbon-900" />
+        <DagBackground accent="sage" variant={2} intensity={0.65} />
       </div>
       <div className="absolute inset-0 film-grain pointer-events-none z-[1]" />
       <div className="absolute inset-0 vignette pointer-events-none z-[1]" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <motion.h2
-          className="apple-headline text-white mb-6"
+          className="apple-headline text-carbon-100 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
@@ -47,15 +62,33 @@ export default function CTA() {
 
         {/* Contact details */}
         <motion.div
-          className="flex items-center justify-center text-sm text-gray-400 mb-12"
+          className="flex items-center justify-center text-sm text-carbon-300 mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
           transition={{ delay: 0.3 }}
         >
-          <a href="mailto:trissaan@gmail.com" className="hover:text-white transition-colors">
-            trissaan@gmail.com
-          </a>
+          <button
+            onClick={copyEmail}
+            className="group inline-flex items-center gap-2 hover:text-carbon-100 transition-colors"
+            aria-label={copied ? 'Email address copied to clipboard' : 'Copy email address to clipboard'}
+          >
+            <span>trissaan@gmail.com</span>
+            <span
+              className={`inline-flex items-center gap-1 text-xs font-mono transition-all duration-300 ${
+                copied ? 'text-sage-300 opacity-100' : 'text-carbon-400 opacity-0 group-hover:opacity-100'
+              }`}
+              aria-live="polite"
+            >
+              {copied ? (
+                <>
+                  <Check size={12} /> copied
+                </>
+              ) : (
+                'click to copy'
+              )}
+            </span>
+          </button>
         </motion.div>
 
         {/* Buttons */}
@@ -66,24 +99,28 @@ export default function CTA() {
           viewport={viewportConfig}
           transition={{ duration: 0.6, delay: 0.4, ease: appleEasing }}
         >
-          <motion.a
-            href="mailto:trissaan@gmail.com"
-            className="relative px-10 py-4 bg-white text-black font-semibold rounded-full text-lg hover:bg-gray-100 transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get in Touch
-          </motion.a>
+          <MagneticWrapper strength={0.3}>
+            <motion.a
+              href="mailto:trissaan@gmail.com"
+              className="relative px-10 py-4 bg-carbon-100 text-carbon-900 font-semibold rounded-full text-lg hover:bg-white transition-all"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get in Touch
+            </motion.a>
+          </MagneticWrapper>
 
-          <motion.a
-            href="/resume.pdf"
-            target="_blank"
-            className="px-10 py-4 border border-white/20 text-white font-semibold rounded-full text-lg hover:border-white/40 hover:bg-white/5 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Download Resume
-          </motion.a>
+          <MagneticWrapper strength={0.25}>
+            <motion.a
+              href="/resume.pdf"
+              target="_blank"
+              className="px-10 py-4 border border-carbon-500 text-carbon-100 font-semibold rounded-full text-lg hover:border-sage-300/60 hover:bg-sage-300/[0.04] transition-all duration-300 inline-block"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Download Resume
+            </motion.a>
+          </MagneticWrapper>
         </motion.div>
 
         {/* Social icons */}
@@ -100,7 +137,7 @@ export default function CTA() {
               href={social.href}
               target={social.href.startsWith('http') ? '_blank' : undefined}
               rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="text-gray-600 hover:text-white transition-colors duration-300"
+              className="text-carbon-400 hover:text-sage-300 transition-colors duration-300"
               whileHover={{ scale: 1.3, y: -2 }}
               aria-label={social.label}
             >
@@ -109,10 +146,10 @@ export default function CTA() {
           ))}
         </motion.div>
 
-        <div className="w-16 h-px bg-white/10 mx-auto mb-8" />
+        <div className="w-16 h-px bg-carbon-500/60 mx-auto mb-8" />
 
         <motion.p
-          className="text-gray-600 text-sm"
+          className="text-carbon-400 text-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
@@ -121,7 +158,6 @@ export default function CTA() {
         </motion.p>
       </div>
 
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent z-[2]" />
     </section>
   )
 }

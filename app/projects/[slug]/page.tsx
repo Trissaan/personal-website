@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { getProjectBySlug } from '@/app/lib/projectsData'
 import { notFound } from 'next/navigation'
 import Navbar from '@/app/components/Navbar'
+import DagBackground from '@/app/components/DagBackground'
 
 export default function ProjectDetail({ params }: { params: { slug: string } }) {
   const project = getProjectBySlug(params.slug)
@@ -37,23 +38,16 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
     <main className="w-full overflow-hidden relative min-h-screen">
       {/* Background — matches main page */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07080d] via-[#0d1020] to-[#07080d]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-900 via-carbon-800 to-carbon-900" />
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(6,182,212,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.5) 1px, transparent 1px)',
+              'linear-gradient(rgba(125,211,192,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,192,0.4) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
-        <div
-          className="absolute top-1/4 -right-32 w-[400px] h-[400px] bg-cyan-600/8 rounded-full blur-[150px]"
-          style={{ animation: 'float-orb 18s ease-in-out infinite' }}
-        />
-        <div
-          className="absolute bottom-1/3 -left-32 w-[350px] h-[350px] bg-indigo-600/6 rounded-full blur-[130px]"
-          style={{ animation: 'float-orb-reverse 20s ease-in-out infinite' }}
-        />
+        <DagBackground accent="sage" variant={0} intensity={0.6} />
       </div>
       <div className="fixed inset-0 film-grain pointer-events-none z-[1]" />
 
@@ -68,7 +62,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sage-300 hover:text-sage-200 transition-colors mb-8"
           >
             <ArrowLeft size={18} />
             Back Home
@@ -84,21 +78,21 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
           {/* Header */}
           <motion.div variants={itemVariants}>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="gradient-text">{project.title}</span>
+              <span className="hero-gradient-text">{project.title}</span>
             </h1>
-            <p className="text-lg text-gray-300 leading-relaxed max-w-3xl">
+            <p className="text-lg text-carbon-200 leading-relaxed max-w-3xl">
               {project.description}
             </p>
           </motion.div>
 
           {/* Tech Stack */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-cyan-400 font-mono tracking-wide uppercase text-sm">Tech Stack</h2>
+            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Tech Stack</h2>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((tech, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1.5 bg-white/[0.04] text-gray-300 text-sm rounded-full border border-white/10"
+                  className="px-3 py-1.5 bg-carbon-100/[0.03] text-carbon-200 text-sm rounded-full border border-carbon-500/50"
                 >
                   {tech}
                 </span>
@@ -108,27 +102,27 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
 
           {/* Detailed Description */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-cyan-400 font-mono tracking-wide uppercase text-sm">About</h2>
-            <p className="text-gray-400 leading-relaxed whitespace-pre-line">
+            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">About</h2>
+            <p className="text-carbon-300 leading-relaxed whitespace-pre-line">
               {project.detailedDescription}
             </p>
           </motion.div>
 
           {/* Approach */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-cyan-400 font-mono tracking-wide uppercase text-sm">Technical Approach</h2>
-            <p className="text-gray-400 leading-relaxed whitespace-pre-line">
+            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Technical Approach</h2>
+            <p className="text-carbon-300 leading-relaxed whitespace-pre-line">
               {project.approach}
             </p>
           </motion.div>
 
           {/* Achievements */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-cyan-400 font-mono tracking-wide uppercase text-sm">Key Achievements</h2>
+            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Key Achievements</h2>
             <ul className="space-y-3">
               {project.achievements.map((achievement, i) => (
-                <li key={i} className="text-gray-400 flex gap-3">
-                  <span className="text-emerald-400 mt-1 flex-shrink-0">✓</span>
+                <li key={i} className="text-carbon-300 flex gap-3">
+                  <span className="text-sage-300 mt-1 flex-shrink-0">✓</span>
                   <span>{achievement}</span>
                 </li>
               ))}
@@ -137,11 +131,11 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
 
           {/* Challenges */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-cyan-400 font-mono tracking-wide uppercase text-sm">Challenges & Learning</h2>
+            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Challenges & Learning</h2>
             <ul className="space-y-3">
               {project.challenges.map((challenge, i) => (
-                <li key={i} className="text-gray-400 flex gap-3">
-                  <span className="text-amber-400 mt-1 flex-shrink-0">•</span>
+                <li key={i} className="text-carbon-300 flex gap-3">
+                  <span className="text-sage-400 mt-1 flex-shrink-0">•</span>
                   <span>{challenge}</span>
                 </li>
               ))}
@@ -154,7 +148,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.05] text-white font-semibold rounded-full border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-carbon-100/[0.04] text-carbon-100 font-semibold rounded-full border border-carbon-500/60 hover:bg-carbon-100/[0.08] hover:border-carbon-500 transition-all"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
@@ -167,7 +161,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
                 href={project.demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500/10 text-cyan-400 font-semibold rounded-full border border-cyan-500/20 hover:bg-cyan-500/20 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-sage-300/10 text-sage-300 font-semibold rounded-full border border-sage-300/20 hover:bg-sage-300/20 transition-all"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >

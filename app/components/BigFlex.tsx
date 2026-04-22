@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { containerVariants, itemVariants, viewportConfig, appleEasing } from '../lib/animations'
+import DagBackground from './DagBackground'
 
 const stats = [
   { value: 'Seek', label: 'Job Board Scraping' },
@@ -29,10 +30,9 @@ export default function BigFlex() {
       className="relative min-h-screen flex items-center overflow-hidden py-32"
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#10132a] via-[#0f1128] to-[#0c0f22]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-700 via-carbon-800 to-carbon-800" />
         <motion.div className="absolute inset-0" style={{ y: bgY }}>
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-indigo-600/8 rounded-full blur-[180px]" style={{ animation: 'float-orb 16s ease-in-out infinite' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/6 rounded-full blur-[140px]" style={{ animation: 'float-orb-reverse 14s ease-in-out infinite' }} />
+          <DagBackground accent="sageSoft" variant={2} intensity={0.85} />
         </motion.div>
       </div>
       <div className="absolute inset-0 film-grain pointer-events-none z-[1]" />
@@ -40,7 +40,7 @@ export default function BigFlex() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
         <motion.p
-          className="text-sm tracking-[0.3em] uppercase text-indigo-400/80 mb-6 font-medium"
+          className="text-sm tracking-[0.3em] uppercase text-sage-300/80 mb-6 font-medium font-mono"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
@@ -49,7 +49,7 @@ export default function BigFlex() {
         </motion.p>
 
         <motion.h2
-          className="apple-headline text-white mb-6"
+          className="apple-headline text-carbon-100 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
@@ -73,7 +73,7 @@ export default function BigFlex() {
         </motion.p>
 
         <motion.p
-          className="text-gray-500 text-sm mb-16 max-w-2xl"
+          className="text-carbon-400 text-sm mb-16 max-w-2xl"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
@@ -95,11 +95,11 @@ export default function BigFlex() {
             <motion.div
               key={stat.label}
               variants={itemVariants}
-              className="text-center p-6 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm hover:border-indigo-500/30 transition-all duration-500"
+              className="text-center p-6 rounded-2xl bg-carbon-100/[0.02] border border-carbon-500/40 backdrop-blur-sm hover:border-sage-300/40 hover:bg-sage-300/[0.03] transition-all duration-500"
             >
-              <p className="text-xs tracking-widest uppercase text-gray-600 mb-3">Step {i + 1}</p>
-              <p className="text-lg md:text-xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-gray-500 text-sm">{stat.label}</p>
+              <p className="text-xs tracking-widest uppercase text-carbon-400 mb-3 font-mono">Step {i + 1}</p>
+              <p className="text-lg md:text-xl font-bold text-carbon-100 mb-1">{stat.value}</p>
+              <p className="text-carbon-300 text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -113,7 +113,7 @@ export default function BigFlex() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           {techStack.map((tech) => (
-            <span key={tech} className="px-4 py-2 text-sm rounded-full bg-white/[0.03] text-gray-400 border border-white/5">
+            <span key={tech} className="px-4 py-2 text-sm rounded-full bg-carbon-100/[0.03] text-carbon-300 border border-carbon-500/40">
               {tech}
             </span>
           ))}
@@ -127,7 +127,7 @@ export default function BigFlex() {
         >
           <Link
             href="/projects/ai-job-application-automation"
-            className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors text-lg font-medium group"
+            className="inline-flex items-center gap-2 text-sage-300 hover:text-sage-200 transition-colors text-lg font-medium group"
           >
             View Full Case Study
             <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -135,8 +135,6 @@ export default function BigFlex() {
         </motion.div>
       </div>
 
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#10132a] to-transparent z-[2]" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0c0f22] to-transparent z-[2]" />
     </section>
   )
 }

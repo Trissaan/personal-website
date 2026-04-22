@@ -5,13 +5,14 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Database, Code, GitBranch, BarChart3, Brain } from 'lucide-react'
 import { containerVariants, itemVariants, viewportConfig, appleEasing } from '../lib/animations'
+import DagBackground from './DagBackground'
 
 const pipelineSteps = [
-  { icon: Database, name: 'Ingest', tool: 'PostgreSQL', glow: 'bg-cyan-500/20' },
-  { icon: Code, name: 'Transform', tool: 'Python + PySpark', glow: 'bg-blue-500/20' },
-  { icon: GitBranch, name: 'Orchestrate', tool: 'Airflow / DAGs', glow: 'bg-violet-500/20' },
-  { icon: BarChart3, name: 'Visualize', tool: 'Power BI', glow: 'bg-amber-500/20' },
-  { icon: Brain, name: 'Automate', tool: 'AI / LLM', glow: 'bg-emerald-500/20' },
+  { icon: Database, name: 'Ingest', tool: 'PostgreSQL' },
+  { icon: Code, name: 'Transform', tool: 'Python + PySpark' },
+  { icon: GitBranch, name: 'Orchestrate', tool: 'Airflow / DAGs' },
+  { icon: BarChart3, name: 'Visualize', tool: 'Power BI' },
+  { icon: Brain, name: 'Automate', tool: 'AI / LLM' },
 ]
 
 export default function Engineering() {
@@ -31,15 +32,12 @@ export default function Engineering() {
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f122a] via-[#0e1128] to-[#0c0f22]" />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/4 rounded-full blur-[200px]"
-          style={{ animation: 'pulse-glow 8s ease-in-out infinite' }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-700 via-carbon-800 to-carbon-800" />
+        <DagBackground accent="sage" variant={1} intensity={0.8} />
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(232,233,234,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(232,233,234,0.4) 1px, transparent 1px)',
           backgroundSize: '80px 80px',
         }} />
       </div>
@@ -49,7 +47,7 @@ export default function Engineering() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center w-full">
         <motion.h2
-          className="apple-headline text-white mb-6"
+          className="apple-headline text-carbon-100 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
@@ -72,9 +70,9 @@ export default function Engineering() {
 
         {/* Animated connecting line (desktop) */}
         <div className="hidden md:block relative mb-8">
-          <div className="absolute top-1/2 left-[10%] right-[10%] h-px bg-white/5" />
+          <div className="absolute top-1/2 left-[10%] right-[10%] h-px bg-carbon-500/60" />
           <motion.div
-            className="absolute top-1/2 left-[10%] h-px bg-gradient-to-r from-cyan-500/50 via-violet-500/50 to-emerald-500/50"
+            className="absolute top-1/2 left-[10%] h-px bg-gradient-to-r from-sage-400/70 via-sage-300/70 to-sage-200/70"
             style={{ width: lineWidth }}
           />
         </div>
@@ -91,27 +89,27 @@ export default function Engineering() {
             <Fragment key={step.name}>
               <motion.div
                 variants={itemVariants}
-                className="relative flex flex-col items-center p-6 rounded-xl bg-white/[0.03] border border-white/5 w-36 md:w-40 hover:border-white/15 hover:bg-white/[0.06] transition-all duration-500 group"
+                className="relative flex flex-col items-center p-6 rounded-xl bg-carbon-100/[0.02] border border-carbon-500/40 w-36 md:w-40 hover:border-sage-300/40 hover:bg-sage-300/[0.04] transition-all duration-500 group"
               >
                 {/* Glow effect on hover */}
-                <div className={`absolute inset-0 ${step.glow} rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="absolute inset-0 bg-sage-300/[0.15] rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10 flex flex-col items-center">
-                  <step.icon size={28} className="text-cyan-400 mb-3" />
-                  <p className="text-white font-semibold text-sm">{step.name}</p>
-                  <p className="text-gray-500 text-xs mt-1">{step.tool}</p>
+                  <step.icon size={28} className="text-sage-300 mb-3" />
+                  <p className="text-carbon-100 font-semibold text-sm">{step.name}</p>
+                  <p className="text-carbon-400 text-xs mt-1">{step.tool}</p>
                 </div>
               </motion.div>
               {i < pipelineSteps.length - 1 && (
                 <>
                   <motion.span
                     variants={itemVariants}
-                    className="text-gray-600 text-xl hidden md:block"
+                    className="text-carbon-400 text-xl hidden md:block"
                   >
                     &rarr;
                   </motion.span>
                   <motion.span
                     variants={itemVariants}
-                    className="text-gray-600 text-xl md:hidden"
+                    className="text-carbon-400 text-xl md:hidden"
                   >
                     &darr;
                   </motion.span>
@@ -122,9 +120,6 @@ export default function Engineering() {
         </motion.div>
       </div>
 
-      {/* Transition gradients */}
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#0f122a] to-transparent z-[2]" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0c0f22] to-transparent z-[2]" />
     </section>
   )
 }

@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { appleEasing, containerVariants, itemVariants, viewportConfig } from '../lib/animations'
+import DagBackground from './DagBackground'
 
 const roles = [
   {
@@ -40,16 +41,15 @@ export default function WhatYouDo() {
       className="relative min-h-screen flex items-center overflow-hidden py-32"
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1020] via-[#0f1225] to-[#10132a]" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-cyan-600/6 rounded-full blur-[150px]" style={{ animation: 'float-orb 18s ease-in-out infinite' }} />
-        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[130px]" style={{ animation: 'float-orb-reverse 20s ease-in-out infinite' }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-800 via-carbon-800 to-carbon-700" />
+        <DagBackground accent="sage" variant={1} intensity={0.75} />
       </div>
       <div className="absolute inset-0 film-grain pointer-events-none z-[1]" />
 
       <motion.div className="relative z-10 max-w-6xl mx-auto px-6 w-full" style={{ opacity }}>
         {/* Headline */}
         <motion.h2
-          className="apple-headline text-white mb-6"
+          className="apple-headline text-carbon-100 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
@@ -73,7 +73,7 @@ export default function WhatYouDo() {
           {/* Experience column */}
           <div>
             <motion.p
-              className="text-sm tracking-[0.3em] uppercase text-cyan-400/60 mb-8 font-medium"
+              className="text-sm tracking-[0.3em] uppercase text-sage-300/70 mb-8 font-medium font-mono"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={viewportConfig}
@@ -91,12 +91,12 @@ export default function WhatYouDo() {
                 <motion.div
                   key={role.place}
                   variants={itemVariants}
-                  className="border-l-2 border-cyan-500/30 pl-6"
+                  className="border-l-2 border-sage-300/30 pl-6"
                 >
-                  <h3 className="text-xl font-bold text-white mb-1">{role.title}</h3>
-                  <p className="text-cyan-400 font-medium text-sm mb-1">{role.place}</p>
-                  <p className="text-gray-500 text-sm mb-3">{role.period}</p>
-                  <p className="text-gray-400 text-sm leading-relaxed">{role.detail}</p>
+                  <h3 className="text-xl font-bold text-carbon-100 mb-1">{role.title}</h3>
+                  <p className="text-sage-300 font-medium text-sm mb-1">{role.place}</p>
+                  <p className="text-carbon-400 text-sm mb-3">{role.period}</p>
+                  <p className="text-carbon-300 text-sm leading-relaxed">{role.detail}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -105,7 +105,7 @@ export default function WhatYouDo() {
           {/* Credentials column */}
           <div>
             <motion.p
-              className="text-sm tracking-[0.3em] uppercase text-cyan-400/60 mb-8 font-medium"
+              className="text-sm tracking-[0.3em] uppercase text-sage-300/70 mb-8 font-medium font-mono"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={viewportConfig}
@@ -123,9 +123,9 @@ export default function WhatYouDo() {
                 <motion.div
                   key={cred}
                   variants={itemVariants}
-                  className="p-5 rounded-xl bg-white/[0.03] border border-white/5"
+                  className="p-5 rounded-xl bg-carbon-100/[0.02] border border-carbon-500/40 hover:border-sage-300/25 transition-colors duration-500"
                 >
-                  <p className="text-white font-semibold">{cred}</p>
+                  <p className="text-carbon-100 font-semibold">{cred}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -138,10 +138,10 @@ export default function WhatYouDo() {
               viewport={viewportConfig}
               transition={{ delay: 0.4 }}
             >
-              <p className="text-sm tracking-[0.3em] uppercase text-cyan-400/60 mb-4 font-medium">Core Stack</p>
+              <p className="text-sm tracking-[0.3em] uppercase text-sage-300/70 mb-4 font-medium font-mono">Core Stack</p>
               <div className="flex flex-wrap gap-2">
                 {['Python', 'SQL', 'PySpark', 'Power BI', 'AWS', 'FastAPI', 'PostgreSQL', 'LLM APIs', 'Databricks'].map((t) => (
-                  <span key={t} className="px-3 py-1.5 text-xs rounded-full bg-white/[0.04] text-gray-400 border border-white/5">
+                  <span key={t} className="px-3 py-1.5 text-xs rounded-full bg-carbon-100/[0.03] text-carbon-300 border border-carbon-500/40">
                     {t}
                   </span>
                 ))}
@@ -151,8 +151,6 @@ export default function WhatYouDo() {
         </div>
       </motion.div>
 
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#0d1020] to-transparent z-[2]" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#10132a] to-transparent z-[2]" />
     </section>
   )
 }

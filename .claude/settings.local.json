@@ -11,7 +11,14 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git rm:*)",
-      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo view Trissaan/personal-website)"
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo view Trissaan/personal-website)",
+      "WebFetch(domain:www.trissaan.com)",
+      "Bash(find /d/website/public -type f -name *.pdf -o -name *.mp4)",
+      "Bash(npx next:*)",
+      "Bash(git fetch *)",
+      "Bash(curl *)",
+      "Bash(curl -s http://localhost:3002/)",
+      "Read(//tmp/**)"
     ]
   }
 }

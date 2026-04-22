@@ -1,34 +1,47 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, type ReactNode } from 'react'
 import { Database, BarChart3, Zap, Shield } from 'lucide-react'
 import { containerVariants, itemVariants, viewportConfig, appleEasing } from '../lib/animations'
+import DagBackground from './DagBackground'
+import CountUp from './CountUp'
 
-const impactCards = [
+type ImpactCard = {
+  icon: typeof Database
+  titleNode: ReactNode
+  description: string
+  color: string
+}
+
+const impactCards: ImpactCard[] = [
   {
     icon: Database,
-    title: '15,000+ Daily Records',
+    titleNode: (
+      <>
+        <CountUp to={15000} suffix="+" /> Daily Records
+      </>
+    ),
     description: 'SQL + Python pipelines with automated validation gates processing transactional data for Mondelez (~$2M), Nestl\u00e9, L\u2019Or\u00e9al, and Asahi.',
-    color: 'text-cyan-400',
+    color: 'text-sage-300',
   },
   {
     icon: BarChart3,
-    title: 'Power BI Dashboards',
+    titleNode: 'Power BI Dashboards',
     description: 'DAX-based KPI measures across financial, logistics, and client performance. Used by operations, finance, and C-suite for decision-making.',
-    color: 'text-blue-400',
+    color: 'text-sage-200',
   },
   {
     icon: Zap,
-    title: 'Manual \u2192 Automated',
+    titleNode: 'Manual \u2192 Automated',
     description: 'Replaced Excel-based workflows with Python + SQL automation and Power Automate distribution, eliminating manual handoffs.',
-    color: 'text-amber-400',
+    color: 'text-carbon-200',
   },
   {
     icon: Shield,
-    title: 'Data Quality Gates',
+    titleNode: 'Data Quality Gates',
     description: 'Anomaly detection, data drift monitoring, and systematic reconciliation workflows catching errors before they reach downstream systems.',
-    color: 'text-emerald-400',
+    color: 'text-sage-400',
   },
 ]
 
@@ -47,17 +60,16 @@ export default function BusinessImpact() {
       className="relative min-h-screen flex items-center overflow-hidden py-32"
     >
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f22] via-[#0e1126] to-[#0d1024]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-carbon-800 via-carbon-800 to-carbon-700" />
         <motion.div className="absolute inset-0" style={{ y: bgY }}>
-          <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-[160px]" style={{ animation: 'float-orb 20s ease-in-out infinite' }} />
-          <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-emerald-600/4 rounded-full blur-[140px]" style={{ animation: 'float-orb-reverse 18s ease-in-out infinite' }} />
+          <DagBackground accent="sageDeep" variant={3} intensity={0.8} />
         </motion.div>
       </div>
       <div className="absolute inset-0 film-grain pointer-events-none z-[1]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
         <motion.p
-          className="text-sm tracking-[0.3em] uppercase text-cyan-400/60 mb-6 font-medium"
+          className="text-sm tracking-[0.3em] uppercase text-sage-300/70 mb-6 font-medium font-mono"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={viewportConfig}
@@ -66,7 +78,7 @@ export default function BusinessImpact() {
         </motion.p>
 
         <motion.h2
-          className="apple-headline text-white mb-6"
+          className="apple-headline text-carbon-100 mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
@@ -95,24 +107,24 @@ export default function BusinessImpact() {
           whileInView="visible"
           viewport={viewportConfig}
         >
-          {impactCards.map((card) => (
+          {impactCards.map((card, i) => (
             <motion.div
-              key={card.title}
+              key={i}
               variants={itemVariants}
-              className="group p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/15 hover:bg-white/[0.04] transition-all duration-500"
+              whileHover={{ y: -4 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="group p-8 rounded-2xl bg-carbon-100/[0.02] border border-carbon-500/40 hover:border-sage-300/30 hover:bg-sage-300/[0.02] transition-colors duration-500"
             >
               <div className={`${card.color} mb-5`}>
                 <card.icon size={36} />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{card.title}</h3>
-              <p className="text-gray-400 leading-relaxed text-sm">{card.description}</p>
+              <h3 className="text-xl font-bold text-carbon-100 mb-3">{card.titleNode}</h3>
+              <p className="text-carbon-300 leading-relaxed text-sm">{card.description}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#0c0f22] to-transparent z-[2]" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0d1024] to-transparent z-[2]" />
     </section>
   )
 }

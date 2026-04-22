@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-[#07080d] text-white font-body">
+      <body className="bg-carbon-900 text-carbon-100 font-body">
         {children}
       </body>
     </html>
