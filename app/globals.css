@@ -48,7 +48,7 @@ a {
   --accent-soft: #d98b6a; /* lighter accent for use on dark backgrounds */
 
   /* Density rhythm multiplier:  1.3 airy · 1 balanced · 0.7 compact */
-  --d: 1;
+  --d: 0.6;
 
   /* pipeline.py code panel. "Midnight" default.
      Swap the whole block for a theme:
