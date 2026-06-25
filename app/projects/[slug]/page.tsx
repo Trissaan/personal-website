@@ -5,8 +5,39 @@ import { Github, ArrowLeft, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { getProjectBySlug } from '@/app/lib/projectsData'
 import { notFound } from 'next/navigation'
-import Navbar from '@/app/components/Navbar'
-import DagBackground from '@/app/components/DagBackground'
+import Nav from '@/app/components/Nav'
+
+const border = 'rgba(26,23,18,.12)'
+const borderMed = 'rgba(26,23,18,.18)'
+const muted = '#4a443a'
+const muted2 = '#5c554a'
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+}
+
+const item = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      style={{
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: '.16em',
+        textTransform: 'uppercase',
+        color: '#8a8170',
+        marginBottom: 16,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 export default function ProjectDetail({ params }: { params: { slug: string } }) {
   const project = getProjectBySlug(params.slug)
@@ -15,163 +46,169 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
     notFound()
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  }
-
   return (
-    <main className="w-full overflow-hidden relative min-h-screen">
-      {/* Background — matches main page */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-carbon-900 via-carbon-800 to-carbon-900" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
+    <main style={{ minHeight: '100vh', background: '#f5f2ea' }}>
+      <Nav />
+
+      <article style={{ maxWidth: 880, margin: '0 auto', padding: 'calc(72px*var(--d)) 56px calc(96px*var(--d))' }}>
+        {/* Back link */}
+        <Link
+          href="/#projects"
           style={{
-            backgroundImage:
-              'linear-gradient(rgba(125,211,192,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,192,0.4) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            fontSize: 13.5,
+            fontWeight: 600,
+            color: muted2,
+            marginBottom: 40,
           }}
-        />
-        <DagBackground accent="sage" variant={0} intensity={0.6} />
-      </div>
-      <div className="fixed inset-0 film-grain pointer-events-none z-[1]" />
-
-      <Navbar />
-
-      <section className="relative z-10 section-padding max-w-4xl mx-auto min-h-screen flex flex-col pt-32">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8"
         >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sage-300 hover:text-sage-200 transition-colors mb-8"
-          >
-            <ArrowLeft size={18} />
-            Back Home
-          </Link>
-        </motion.div>
+          <ArrowLeft size={16} />
+          Back to projects
+        </Link>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-8"
-        >
+        <motion.div variants={container} initial="hidden" animate="visible">
           {/* Header */}
-          <motion.div variants={itemVariants}>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="hero-gradient-text">{project.title}</span>
+          <motion.div variants={item} style={{ marginBottom: 56 }}>
+            <div
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: '.18em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+                marginBottom: 22,
+              }}
+            >
+              Case Study
+            </div>
+            <h1
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 52,
+                lineHeight: 1.04,
+                fontWeight: 400,
+                letterSpacing: '-.015em',
+                margin: '0 0 24px',
+                textWrap: 'balance',
+              }}
+            >
+              {project.title}
             </h1>
-            <p className="text-lg text-carbon-200 leading-relaxed max-w-3xl">
-              {project.description}
-            </p>
+            <p style={{ fontSize: 18.5, lineHeight: 1.6, color: muted, margin: 0 }}>{project.description}</p>
           </motion.div>
 
           {/* Tech Stack */}
-          <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Tech Stack</h2>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech, i) => (
+          <motion.div variants={item} style={{ marginBottom: 52, paddingTop: 36, borderTop: `1px solid ${border}` }}>
+            <SectionLabel>Tech Stack</SectionLabel>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {project.tech.map((t) => (
                 <span
-                  key={i}
-                  className="px-3 py-1.5 bg-carbon-100/[0.03] text-carbon-200 text-sm rounded-full border border-carbon-500/50"
+                  key={t}
+                  style={{
+                    fontSize: 12.5,
+                    fontFamily: 'var(--font-mono)',
+                    padding: '6px 13px',
+                    border: `1px solid ${borderMed}`,
+                    borderRadius: 100,
+                    color: muted2,
+                  }}
                 >
-                  {tech}
+                  {t}
                 </span>
               ))}
             </div>
           </motion.div>
 
-          {/* Detailed Description */}
-          <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">About</h2>
-            <p className="text-carbon-300 leading-relaxed whitespace-pre-line">
+          {/* About */}
+          <motion.div variants={item} style={{ marginBottom: 52 }}>
+            <SectionLabel>About</SectionLabel>
+            <p style={{ fontSize: 16.5, lineHeight: 1.72, color: muted, margin: 0, whiteSpace: 'pre-line' }}>
               {project.detailedDescription}
             </p>
           </motion.div>
 
-          {/* Approach */}
-          <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Technical Approach</h2>
-            <p className="text-carbon-300 leading-relaxed whitespace-pre-line">
+          {/* Technical Approach */}
+          <motion.div variants={item} style={{ marginBottom: 52 }}>
+            <SectionLabel>Technical Approach</SectionLabel>
+            <p style={{ fontSize: 16.5, lineHeight: 1.72, color: muted, margin: 0, whiteSpace: 'pre-line' }}>
               {project.approach}
             </p>
           </motion.div>
 
-          {/* Achievements */}
-          <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Key Achievements</h2>
-            <ul className="space-y-3">
-              {project.achievements.map((achievement, i) => (
-                <li key={i} className="text-carbon-300 flex gap-3">
-                  <span className="text-sage-300 mt-1 flex-shrink-0">✓</span>
-                  <span>{achievement}</span>
+          {/* Key Achievements */}
+          <motion.div variants={item} style={{ marginBottom: 52 }}>
+            <SectionLabel>Key Achievements</SectionLabel>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {project.achievements.map((a, i) => (
+                <li key={i} style={{ display: 'flex', gap: 14, fontSize: 16, lineHeight: 1.6, color: muted }}>
+                  <span style={{ width: 14, height: 1.5, background: 'var(--accent)', flexShrink: 0, marginTop: 12 }} />
+                  <span>{a}</span>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Challenges */}
-          <motion.div variants={itemVariants}>
-            <h2 className="text-xl font-bold mb-4 text-sage-300 font-mono tracking-wide uppercase text-sm">Challenges & Learning</h2>
-            <ul className="space-y-3">
-              {project.challenges.map((challenge, i) => (
-                <li key={i} className="text-carbon-300 flex gap-3">
-                  <span className="text-sage-400 mt-1 flex-shrink-0">•</span>
-                  <span>{challenge}</span>
+          {/* Challenges & Learning */}
+          <motion.div variants={item} style={{ marginBottom: 56 }}>
+            <SectionLabel>Challenges &amp; Learning</SectionLabel>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {project.challenges.map((c, i) => (
+                <li key={i} style={{ display: 'flex', gap: 14, fontSize: 16, lineHeight: 1.6, color: muted }}>
+                  <span style={{ color: '#8a8170', flexShrink: 0, marginTop: 1 }}>•</span>
+                  <span>{c}</span>
                 </li>
               ))}
             </ul>
           </motion.div>
 
           {/* Links */}
-          <motion.div variants={itemVariants} className="pt-8 pb-16 flex flex-wrap gap-4">
-            <motion.a
+          <motion.div variants={item} style={{ display: 'flex', flexWrap: 'wrap', gap: 14, paddingTop: 40, borderTop: `1px solid ${border}` }}>
+            <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-carbon-100/[0.04] text-carbon-100 font-semibold rounded-full border border-carbon-500/60 hover:bg-carbon-100/[0.08] hover:border-carbon-500 transition-all"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 9,
+                fontSize: 14,
+                fontWeight: 600,
+                color: '#fff',
+                background: 'var(--accent)',
+                padding: '12px 22px',
+                borderRadius: 2,
+              }}
             >
-              <Github size={18} />
+              <Github size={17} />
               View on GitHub
-            </motion.a>
+            </a>
 
             {project.demoLink && (
-              <motion.a
+              <a
                 href={project.demoLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-sage-300/10 text-sage-300 font-semibold rounded-full border border-sage-300/20 hover:bg-sage-300/20 transition-all"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 9,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: 'var(--accent)',
+                  border: '1px solid var(--accent)',
+                  padding: '12px 22px',
+                  borderRadius: 2,
+                }}
               >
-                <ExternalLink size={18} />
+                <ExternalLink size={17} />
                 Live Demo
-              </motion.a>
+              </a>
             )}
           </motion.div>
         </motion.div>
-      </section>
+      </article>
     </main>
   )
 }

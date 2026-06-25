@@ -1,25 +1,29 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import WhatYouDo from './components/WhatYouDo'
-import BigFlex from './components/BigFlex'
-import BusinessImpact from './components/BusinessImpact'
-import Projects from './components/Projects'
-import Engineering from './components/Engineering'
-import Thinking from './components/Thinking'
-import CTA from './components/CTA'
+import Nav from "@/app/components/Nav";
+import Hero from "@/app/components/Hero";
+import WhatIDo from "@/app/components/WhatIDo";
+import Experience from "@/app/components/Experience";
+import Impact from "@/app/components/Impact";
+import FeaturedProject from "@/app/components/FeaturedProject";
+import Projects from "@/app/components/Projects";
+import Engineering from "@/app/components/Engineering";
+import Thesis from "@/app/components/Thesis";
+import Contact from "@/app/components/Contact";
+import Footer from "@/app/components/Footer";
 
 export default function Home() {
   return (
-    <main className="w-full overflow-hidden">
-      <Navbar />
+    <>
+      <Nav />
       <Hero />
-      <WhatYouDo />
-      <BigFlex />
-      <BusinessImpact />
+      <WhatIDo />
+      <Experience />
+      <Impact />
+      <FeaturedProject />
       <Projects />
       <Engineering />
-      <Thinking />
-      <CTA />
-    </main>
-  )
+      <Thesis />
+      <Contact />
+      <Footer />
+    </>
+  );
 }

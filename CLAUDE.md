@@ -1,29 +1,54 @@
-# Portfolio — www.trissaan.com
+# Portfolio · www.trissaan.com
 
-Next.js 14 (app router) + TypeScript + Tailwind + Framer Motion. Deployed on Vercel on push to `master`.
+Next.js 14 (app router) + TypeScript + Framer Motion. Deployed on Vercel on push to `master`.
 
-## Design system — Carbon & Sage
+> History: this site was a dark "Carbon & Sage" Tailwind theme. It was fully rebuilt into the light, inline-styled theme described below, and Tailwind was removed entirely (no `tailwindcss` dependency, no config, no `@tailwind` directives). Don't restore the old system.
 
-Single-accent palette. Do not reintroduce cyan / indigo / violet / amber / emerald / blue / rose — they were deliberately stripped out. Any new color belongs in `tailwind.config.ts`.
+## Design system: Paper & Rust
 
-- **Carbon** (neutral greys, 50-900) — `carbon-900` `#0b0c0e` page bg, `carbon-100` `#e8e9ea` body text, `carbon-400` `#6b7078` muted.
-- **Sage** (single accent, 50-900) — `sage-300` `#7dd3c0` primary accent. Use `sage-400` for deeper hover, `sage-200` for lighter.
-- Gradient utility classes live in `app/globals.css`: `gradient-text`, `hero-gradient-text`, `sage-gradient-text`. No `warm-gradient-text` anymore.
+Warm light theme. Styling is done with **inline `style={{}}` objects driven by CSS variables**, not Tailwind classes and not CSS modules. `className` appears exactly once in the app (font wiring in `app/layout.tsx`). Match the inline-style pattern when adding or editing UI.
 
-The "done" line in the Hero terminal is the one intentional exception to tonal discipline — it uses `carbon-100 font-semibold` for brightness contrast instead of a second accent hue.
+**Theme tokens** live in `:root` in `app/globals.css` — change them once to re-skin the whole site:
+- `--accent` `#b8432a` rust (primary accent). Alternatives noted in the comment: oxblood / forest / cobalt / ink.
+- `--accent-soft` `#d98b6a` — lighter accent for use on dark backgrounds (e.g. the Thesis section).
+- `--d` — density multiplier baked into section padding as `calc(Npx * var(--d))` (`1.3` airy · `1` balanced · `0.7` compact).
+- `--code-*` — the `pipeline.py` code panel palette (used by `WhatIDo`'s `CodePanel`).
 
-## Signature components
+**Fonts** (`app/layout.tsx`): Newsreader → `var(--font-serif)` (all headings, with italic `<span>` accents), Archivo → `var(--font-sans)` (body, set on `<body>`), IBM Plex Mono → `var(--font-mono)` (code panel, tech chips, small meta).
 
-- `DagBackground` — animated SVG directed-acyclic graph replacing generic blur orbs. Thematic to data pipelines. Accent prop is limited to sage tonal variants (`sage | sageSoft | sageDeep | cool | warm`). Use `variant` 0-3 for different node layouts.
-- `MagneticWrapper` — cursor-attracting wrapper for CTAs. Pass `strength` (0.2-0.3 is the established range).
-- `CountUp` — framer-motion driven counter, triggered once via `useInView`.
+**Recurring values** (hardcoded inline, not tokenized — keep them consistent):
+- Page bg `#f5f2ea`, base text `#1a1712` (both set on `body`).
+- Muted text `#4a443a` / `#5c554a`; faint meta `#8a8170`.
+- Hairline borders `rgba(26,23,18,.12)`; stronger dividers `.18`; chip borders `.2`.
+- White cards `#fff`; tinted section bg `#ece7db` (Impact); dark section `#1a1712` with `#f5f2ea` text (Thesis).
+- Separator glyph is `·` (middle dot). **No em dashes** — they were deliberately removed; use `·` for meta and normal sentence punctuation in prose.
 
-## Section structure
+**Section conventions**: `maxWidth: 1280`, horizontal padding `56px`, vertical padding `calc(N * var(--d))`, a top hairline `borderTop` between sections. Eyebrow label = uppercase, `12px`, weight `600`, `letterSpacing .18em`, `color var(--accent)`. No `min-h-screen` and no fade-overlay divs between sections.
 
-Sections live in `app/components/*.tsx`; each is `min-h-screen` with a local `DagBackground` and carbon gradient. Sections are composed in `app/page.tsx`. Order matters for the Navbar active-link IntersectionObserver — nav link `href` values in `Navbar.tsx` must match section `id` attributes.
+## Sections & navigation
+
+Sections live in `app/components/*.tsx`, composed in `app/page.tsx` in this order:
+
+`Nav · Hero · WhatIDo · Experience · Impact · FeaturedProject · Projects · Engineering · Thesis · Contact · Footer`
+
+`Nav.tsx` is a **client component** with an `IntersectionObserver` scroll-spy (`rootMargin: "-45% 0px -55% 0px"`) that highlights the active link in `var(--accent)` with an animated underline. Each nav link's `href` is derived from its label via `label.toLowerCase().replace(/\s+/g, "-")`, so:
+
+- A nav label only works if a section has the matching `id`. Current links → ids: What I Do→`what-i-do`, Projects→`projects`, Impact→`impact`, Engineering→`engineering`, Contact→`contact`.
+- `Experience` has `id="experience"` but is intentionally **not** in the nav. `Hero`, `FeaturedProject`, and `Thesis` have no `id`.
+- Adding a nav label requires a section with the slugified id; deleting a linked section leaves a dead link.
+
+## Project detail pages
+
+`app/projects/[slug]/page.tsx` is a client component using the same Paper & Rust theme and the shared `Nav`. Content comes from `app/lib/projectsData.ts` (`getProjectBySlug`, `getAllProjects`, `Project` interface). There are 8 projects in the data; 4 are surfaced on the homepage:
+- `Projects.tsx` — 3 cards linking to `/projects/<slug>`.
+- `FeaturedProject.tsx` — "View Full Case Study" → `/projects/ai-job-application-automation`.
+
+**Path alias**: `tsconfig.json` maps `@/*` → `./*`. Imports are `@/app/components/X` and `@/app/lib/X` (not `@/components/X`).
 
 ## Things not to do
 
-- Don't put fade overlay divs between sections (`bg-gradient-to-b from-[#...] to-transparent`). The user removed these explicitly — section-to-section transitions should be seamless.
-- Don't re-add `ThemeToggle`. Light mode isn't shipped; the toggle was removed rather than left in limbo.
-- Don't add `*.tsbuildinfo` to commits — already gitignored.
+- Don't style with Tailwind utility classes / `className` — use inline `style` + CSS variables to match the codebase.
+- Don't reintroduce em dashes.
+- Don't add a nav label without a section whose `id` matches the slugified label.
+- Don't restore deleted dark-theme pieces: `DagBackground`, `MagneticWrapper`, `CountUp`, `Navbar`, `ThemeToggle`.
+- Don't add `*.tsbuildinfo` to commits (already gitignored).

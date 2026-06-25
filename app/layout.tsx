@@ -1,44 +1,33 @@
-import type { Metadata } from 'next'
-import { DM_Sans, Playfair_Display, JetBrains_Mono } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from "next";
+import { Newsreader, Archivo, IBM_Plex_Mono } from "next/font/google";
+import "./globals.css";
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-})
+const serif = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+  variable: "--font-serif",
+});
+const sans = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  title: 'Trissaan A Shanmugasundaram | Data + AI Systems',
-  description: 'I don\'t just analyse data. I build systems that act on it. Data pipelines, automation, and AI systems — end-to-end.',
-  keywords: 'Data Engineer, AI Systems, Data Pipelines, PySpark, Databricks, AWS, Python, Automation, LLM',
-  openGraph: {
-    title: 'Trissaan A Shanmugasundaram | Data + AI Systems',
-    description: 'Data pipelines. Automation. AI systems. End-to-end.',
-    type: 'website',
-    locale: 'en_AU',
-  },
-}
+  title: "Trissaan A Shanmugasundaram | Data + AI Systems",
+  description: "Data pipelines. Automation. AI systems. End-to-end.",
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${playfair.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-carbon-900 text-carbon-100 font-body">
-        {children}
-      </body>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
     </html>
-  )
+  );
 }
