@@ -10,7 +10,7 @@ const steps = [
 export default function FeaturedProject() {
   return (
     <section
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(88px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(88px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
       <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 24 }}>
         Featured Project
@@ -18,8 +18,8 @@ export default function FeaturedProject() {
       <h2
         style={{
           fontFamily: "var(--font-serif)",
-          fontSize: 58,
-          lineHeight: 1.02,
+          fontSize: "clamp(32px, 7vw, 58px)",
+          lineHeight: 1.04,
           fontWeight: 400,
           margin: "0 0 24px",
           maxWidth: 880,
@@ -37,7 +37,7 @@ export default function FeaturedProject() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4,1fr)",
+          gridTemplateColumns: "var(--cols-4)",
           gap: 0,
           borderTop: "1px solid rgba(26,23,18,.18)",
           borderBottom: "1px solid rgba(26,23,18,.18)",
@@ -48,7 +48,7 @@ export default function FeaturedProject() {
             key={s.n}
             style={{
               padding: i === 0 ? "26px 24px 26px 0" : i === steps.length - 1 ? "26px 0 26px 24px" : "26px 24px",
-              borderRight: i < steps.length - 1 ? "1px solid rgba(26,23,18,.12)" : "none",
+              borderRight: i < steps.length - 1 ? "var(--rule-v)" : "none",
             }}
           >
             <div style={{ fontFamily: "var(--font-serif)", fontSize: 30, color: "var(--accent)", marginBottom: 10 }}>{s.n}</div>

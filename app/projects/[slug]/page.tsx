@@ -50,7 +50,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
     <main style={{ minHeight: '100vh', background: '#f5f2ea' }}>
       <Nav />
 
-      <article style={{ maxWidth: 880, margin: '0 auto', padding: 'calc(72px*var(--d)) 56px calc(96px*var(--d))' }}>
+      <article style={{ maxWidth: 880, margin: '0 auto', padding: 'calc(72px*var(--d)) var(--pad-x) calc(96px*var(--d))' }}>
         {/* Back link */}
         <Link
           href="/#projects"
@@ -86,8 +86,8 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
             <h1
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 52,
-                lineHeight: 1.04,
+                fontSize: 'clamp(32px, 8vw, 52px)',
+                lineHeight: 1.06,
                 fontWeight: 400,
                 letterSpacing: '-.015em',
                 margin: '0 0 24px',

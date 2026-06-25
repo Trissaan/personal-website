@@ -31,17 +31,17 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(80px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(80px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 44 }}>
-        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 46, fontWeight: 400, margin: 0, letterSpacing: "-.01em" }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 16, flexWrap: "wrap", marginBottom: 44 }}>
+        <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(30px, 6vw, 46px)", fontWeight: 400, margin: 0, letterSpacing: "-.01em" }}>
           Things I&apos;ve <span style={{ fontStyle: "italic" }}>built.</span>
         </h2>
         <a href="https://github.com/trissaan" style={{ fontSize: 14, fontWeight: 600, color: "#5c554a", textDecoration: "none" }}>
           More on GitHub →
         </a>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "var(--cols-3)", gap: 24 }}>
         {projects.map((p) => (
           <Link
             key={p.title}

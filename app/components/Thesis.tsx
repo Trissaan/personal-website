@@ -1,15 +1,15 @@
 export default function Thesis() {
   return (
     <section style={{ background: "#1a1712", color: "#f5f2ea", borderTop: "1px solid rgba(26,23,18,.12)" }}>
-      <div style={{ padding: "calc(110px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
+      <div style={{ padding: "calc(110px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
         <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 34 }}>
           Thesis
         </div>
         <h2
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: 72,
-            lineHeight: 1.04,
+            fontSize: "clamp(36px, 9vw, 72px)",
+            lineHeight: 1.05,
             fontWeight: 400,
             margin: "0 auto 32px",
             maxWidth: 900,

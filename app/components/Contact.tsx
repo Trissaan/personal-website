@@ -1,11 +1,11 @@
 export default function Contact() {
   return (
-    <section id="contact" style={{ padding: "calc(110px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
+    <section id="contact" style={{ padding: "calc(110px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
       <h2
         style={{
           fontFamily: "var(--font-serif)",
-          fontSize: 68,
-          lineHeight: 1.02,
+          fontSize: "clamp(34px, 9vw, 68px)",
+          lineHeight: 1.04,
           fontWeight: 400,
           margin: "0 0 26px",
           letterSpacing: "-.015em",

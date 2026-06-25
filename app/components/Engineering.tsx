@@ -25,14 +25,14 @@ export default function Engineering() {
   return (
     <section
       id="engineering"
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(84px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(84px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, marginBottom: 52, flexWrap: "wrap" }}>
         <div>
           <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 22 }}>
             Engineering
           </div>
-          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 46, lineHeight: 1.06, fontWeight: 400, margin: 0, letterSpacing: "-.01em", maxWidth: 540 }}>
+          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(30px, 6vw, 46px)", lineHeight: 1.06, fontWeight: 400, margin: 0, letterSpacing: "-.01em", maxWidth: 540 }}>
             How I <span style={{ fontStyle: "italic" }}>build.</span>
           </h2>
         </div>
@@ -41,15 +41,15 @@ export default function Engineering() {
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 0, borderTop: "1px solid rgba(26,23,18,.18)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "var(--cols-2)", gap: 0, borderTop: "1px solid rgba(26,23,18,.18)" }}>
         {principles.map((p, i) => (
           <div
             key={p.n}
             style={{
               padding: "36px 0",
-              paddingRight: i % 2 === 0 ? 56 : 0,
-              paddingLeft: i % 2 === 1 ? 56 : 0,
-              borderRight: i % 2 === 0 ? "1px solid rgba(26,23,18,.12)" : "none",
+              paddingRight: i % 2 === 0 ? "var(--cell-indent)" : 0,
+              paddingLeft: i % 2 === 1 ? "var(--cell-indent)" : 0,
+              borderRight: i % 2 === 0 ? "var(--rule-v)" : "none",
               borderBottom: i < 2 ? "1px solid rgba(26,23,18,.12)" : "none",
             }}
           >

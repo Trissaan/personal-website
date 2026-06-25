@@ -67,6 +67,19 @@ a {
   /* Density rhythm multiplier:  1.3 airy · 1 balanced · 0.7 compact */
   --d: 0.6;
 
+  /* Responsive layout knobs — overridden in the media queries at the
+     bottom of this file. Components reference these inline so a single
+     breakpoint change re-flows the whole site. */
+  --pad-x: 56px;              /* section horizontal gutter */
+  --cols-4: repeat(4, 1fr);  /* Impact + FeaturedProject strips */
+  --cols-3: repeat(3, 1fr);  /* Projects cards */
+  --cols-2: repeat(2, 1fr);  /* Engineering principles */
+  --split: 1fr 1.05fr;       /* WhatIDo text + terminal */
+  --split-even: 1fr 1fr;     /* Experience roles */
+  --gap-split: 64px;         /* gap for the two-column splits */
+  --rule-v: 1px solid rgba(26,23,18,.12); /* vertical cell dividers */
+  --cell-indent: 56px;       /* side padding between split columns */
+
   /* pipeline.py code panel. "Midnight" default.
      Swap the whole block for a theme:
        Paper:  bg #efe9dc · border rgba(26,23,18,.16) · base #5c554a · kw #b8432a · fn #2f4ba8 · comment #a99f8c
@@ -79,4 +92,46 @@ a {
   --code-kw: #c678dd;
   --code-fn: #61afef;
   --code-comment: #46535a;
+}
+
+/* ============================================================
+   RESPONSIVE — collapse the desktop grids / gutters for
+   tablet & mobile. Values feed the inline styles via the vars above.
+   ============================================================ */
+@media (max-width: 760px) {
+  :root {
+    --pad-x: 28px;
+    --cols-4: repeat(2, 1fr);
+    --cols-3: repeat(2, 1fr);
+    --cols-2: 1fr;
+    --split: 1fr;
+    --split-even: 1fr;
+    --gap-split: 40px;
+    --rule-v: none;
+    --cell-indent: 0px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --pad-x: 18px;
+    --cols-3: 1fr;
+  }
+}
+
+/* Nav responsive visibility — class-controlled so it is correct on the
+   server (no desktop→hamburger flash on mobile load). */
+.nav-links { display: flex; }
+.nav-cta { display: inline-block; }
+.nav-burger { display: none; }
+.nav-dropdown { display: flex; }
+
+@media (max-width: 720px) {
+  .nav-links,
+  .nav-cta { display: none; }
+  .nav-burger { display: inline-flex; }
+}
+
+@media (min-width: 721px) {
+  .nav-dropdown { display: none; }
 }

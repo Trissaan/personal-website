@@ -6,14 +6,14 @@ export default function WhatIDo() {
   return (
     <section
       id="what-i-do"
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(80px*var(--d)) 56px", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(80px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.05fr", gap: 64, alignItems: "center" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "var(--split)", gap: "var(--gap-split)", alignItems: "center" }}>
         <div>
           <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 22 }}>
             What I Do
           </div>
-          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 46, lineHeight: 1.06, fontWeight: 400, margin: "0 0 22px", letterSpacing: "-.01em" }}>
+          <h2 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(30px, 6vw, 46px)", lineHeight: 1.06, fontWeight: 400, margin: "0 0 22px", letterSpacing: "-.01em" }}>
             Data → Insight → <span style={{ fontStyle: "italic" }}>Action.</span>
           </h2>
           <p style={{ fontSize: 17, lineHeight: 1.65, color: "#4a443a", margin: "0 0 28px", maxWidth: 480 }}>

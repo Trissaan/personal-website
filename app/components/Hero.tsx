@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section style={{ padding: "calc(96px*var(--d)) 56px calc(84px*var(--d))", maxWidth: 1280, margin: "0 auto" }}>
+    <section style={{ padding: "calc(96px*var(--d)) var(--pad-x) calc(84px*var(--d))", maxWidth: 1280, margin: "0 auto" }}>
       <div
         style={{
           display: "flex",
@@ -21,8 +21,8 @@ export default function Hero() {
       <h1
         style={{
           fontFamily: "var(--font-serif)",
-          fontSize: 84,
-          lineHeight: 1.0,
+          fontSize: "clamp(42px, 11vw, 84px)",
+          lineHeight: 1.02,
           fontWeight: 400,
           margin: "0 0 38px",
           letterSpacing: "-.02em",
