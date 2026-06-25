@@ -1,42 +1,6 @@
-const stack = ["Python", "SQL", "PySpark", "Power BI", "AWS", "FastAPI", "PostgreSQL", "LLM APIs", "Databricks"];
+import TerminalPanel from "@/app/components/TerminalPanel";
 
-function CodePanel() {
-  const dot = (bg: string) => (
-    <span style={{ width: 11, height: 11, borderRadius: "50%", background: bg, display: "inline-block" }} />
-  );
-  const comment = { color: "var(--code-comment)" } as const;
-  return (
-    <div
-      style={{
-        border: "1px solid var(--code-border)",
-        borderRadius: 8,
-        overflow: "hidden",
-        background: "var(--code-bg)",
-        boxShadow: "0 24px 60px rgba(26,23,18,.16)",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "13px 18px", borderBottom: "1px solid var(--code-titlebar)" }}>
-        {dot("#ff5f56")}
-        {dot("#ffbd2e")}
-        {dot("#27c93f")}
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--code-filename)", marginLeft: 10 }}>
-          pipeline.py · production
-        </span>
-      </div>
-      <div style={{ padding: 24, fontFamily: "var(--font-mono)", fontSize: 13.5, lineHeight: 2.0, color: "var(--code-base)" }}>
-        <div>
-          <span style={{ color: "var(--code-kw)" }}>def</span> <span style={{ color: "var(--code-fn)" }}>run</span>(raw):
-        </div>
-        <div style={{ paddingLeft: 24 }}>df = ingest(raw)<span style={comment}>  # 15,000+ daily records</span></div>
-        <div style={{ paddingLeft: 24 }}>df = validate(df)<span style={comment}>  # quality gates</span></div>
-        <div style={{ paddingLeft: 24 }}>df = transform(df)<span style={comment}>  # pyspark · sql</span></div>
-        <div style={{ paddingLeft: 24 }}>
-          <span style={{ color: "var(--code-kw)" }}>return</span> decide(df)<span style={comment}>  # → action, not a chart</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const stack = ["Python", "SQL", "PySpark", "Power BI", "AWS", "FastAPI", "PostgreSQL", "LLM APIs", "Databricks"];
 
 export default function WhatIDo() {
   return (
@@ -64,7 +28,7 @@ export default function WhatIDo() {
             ))}
           </div>
         </div>
-        <CodePanel />
+        <TerminalPanel />
       </div>
     </section>
   );
