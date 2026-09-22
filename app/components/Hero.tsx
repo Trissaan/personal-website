@@ -3,9 +3,6 @@ export default function Hero() {
     <section style={{ padding: "calc(96px*var(--d)) var(--pad-x) calc(84px*var(--d))", maxWidth: 1280, margin: "0 auto" }}>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 14,
           fontSize: 12,
           fontWeight: 600,
           letterSpacing: ".18em",
@@ -14,7 +11,6 @@ export default function Hero() {
           marginBottom: 36,
         }}
       >
-        <span style={{ width: 38, height: 1, background: "var(--accent)", display: "inline-block" }} />
         Automation + Data Systems · Melbourne
       </div>
 
