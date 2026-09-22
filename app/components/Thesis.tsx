@@ -1,8 +1,8 @@
 export default function Thesis() {
   return (
-    <section style={{ background: "#1a1712", color: "#f5f2ea", borderTop: "1px solid rgba(26,23,18,.12)" }}>
+    <section style={{ background: "#15181f", color: "#f2f3f6", borderTop: "1px solid rgba(21,24,31,.12)" }}>
       <div style={{ padding: "calc(110px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 34 }}>
+        <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--accent-soft)", marginBottom: 34 }}>
           Thesis
         </div>
         <h2
@@ -20,7 +20,7 @@ export default function Thesis() {
           Dashboards don&apos;t matter.{" "}
           <span style={{ fontStyle: "italic", color: "var(--accent-soft)" }}>Decisions do.</span>
         </h2>
-        <p style={{ fontSize: 18, lineHeight: 1.6, color: "#cabfa9", maxWidth: 600, margin: "0 auto" }}>
+        <p style={{ fontSize: 18, lineHeight: 1.6, color: "#c2c7d2", maxWidth: 600, margin: "0 auto" }}>
           Every pipeline I ship exists to shorten the distance between a number and an action. Visualisation is the
           garnish. The work is upstream.
         </p>

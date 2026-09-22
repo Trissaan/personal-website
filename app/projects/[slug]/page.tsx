@@ -7,10 +7,10 @@ import { getProjectBySlug } from '@/app/lib/projectsData'
 import { notFound } from 'next/navigation'
 import Nav from '@/app/components/Nav'
 
-const border = 'rgba(26,23,18,.12)'
-const borderMed = 'rgba(26,23,18,.18)'
-const muted = '#4a443a'
-const muted2 = '#5c554a'
+const border = 'rgba(21,24,31,.12)'
+const borderMed = 'rgba(21,24,31,.18)'
+const muted = '#444a56'
+const muted2 = '#555c6a'
 
 const container = {
   hidden: { opacity: 0 },
@@ -30,7 +30,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
         fontWeight: 700,
         letterSpacing: '.16em',
         textTransform: 'uppercase',
-        color: '#8a8170',
+        color: '#7d8695',
         marginBottom: 16,
       }}
     >
@@ -47,7 +47,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: '#f5f2ea' }}>
+    <main style={{ minHeight: '100vh', background: '#f2f3f6' }}>
       <Nav />
 
       <article style={{ maxWidth: 880, margin: '0 auto', padding: 'calc(72px*var(--d)) var(--pad-x) calc(96px*var(--d))' }}>
@@ -156,7 +156,7 @@ export default function ProjectDetail({ params }: { params: { slug: string } }) 
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
               {project.challenges.map((c, i) => (
                 <li key={i} style={{ display: 'flex', gap: 14, fontSize: 16, lineHeight: 1.6, color: muted }}>
-                  <span style={{ color: '#8a8170', flexShrink: 0, marginTop: 1 }}>•</span>
+                  <span style={{ color: '#7d8695', flexShrink: 0, marginTop: 1 }}>•</span>
                   <span>{c}</span>
                 </li>
               ))}

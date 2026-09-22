@@ -10,7 +10,7 @@ const steps = [
 export default function FeaturedProject() {
   return (
     <section
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(88px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(21,24,31,.12)", padding: "calc(88px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
       <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 24 }}>
         Featured Project
@@ -29,7 +29,7 @@ export default function FeaturedProject() {
       >
         I built an AI that <span style={{ fontStyle: "italic" }}>applies to jobs</span> for me.
       </h2>
-      <p style={{ fontSize: 18, lineHeight: 1.6, color: "#4a443a", maxWidth: 680, margin: "0 0 44px" }}>
+      <p style={{ fontSize: 18, lineHeight: 1.6, color: "#444a56", maxWidth: 680, margin: "0 0 44px" }}>
         Playwright scrapes Seek listings, GPT tailors my resume & cover letter per job, then a live dashboard tracks
         every application. Background schedulers monitor new listings continuously, with no manual applications. FastAPI +
         MongoDB backend, Next.js frontend, AWS Cognito auth.
@@ -39,8 +39,8 @@ export default function FeaturedProject() {
           display: "grid",
           gridTemplateColumns: "var(--cols-4)",
           gap: 0,
-          borderTop: "1px solid rgba(26,23,18,.18)",
-          borderBottom: "1px solid rgba(26,23,18,.18)",
+          borderTop: "1px solid rgba(21,24,31,.18)",
+          borderBottom: "1px solid rgba(21,24,31,.18)",
         }}
       >
         {steps.map((s, i) => (
@@ -53,7 +53,7 @@ export default function FeaturedProject() {
           >
             <div style={{ fontFamily: "var(--font-serif)", fontSize: 30, color: "var(--accent)", marginBottom: 10 }}>{s.n}</div>
             <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{s.t}</div>
-            <div style={{ fontSize: 13.5, color: "#5c554a" }}>{s.d}</div>
+            <div style={{ fontSize: 13.5, color: "#555c6a" }}>{s.d}</div>
           </div>
         ))}
       </div>

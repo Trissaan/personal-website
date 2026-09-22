@@ -25,7 +25,7 @@ export default function Engineering() {
   return (
     <section
       id="engineering"
-      style={{ borderTop: "1px solid rgba(26,23,18,.12)", padding: "calc(84px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
+      style={{ borderTop: "1px solid rgba(21,24,31,.12)", padding: "calc(84px*var(--d)) var(--pad-x)", maxWidth: 1280, margin: "0 auto" }}
     >
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 24, marginBottom: 52, flexWrap: "wrap" }}>
         <div>
@@ -36,12 +36,12 @@ export default function Engineering() {
             How I <span style={{ fontStyle: "italic" }}>build.</span>
           </h2>
         </div>
-        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: "#5c554a", maxWidth: 380, margin: 0 }}>
+        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: "#555c6a", maxWidth: 380, margin: 0 }}>
           A dashboard is only as trustworthy as the pipeline behind it. These are the rules the upstream work runs on.
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "var(--cols-2)", gap: 0, borderTop: "1px solid rgba(26,23,18,.18)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "var(--cols-2)", gap: 0, borderTop: "1px solid rgba(21,24,31,.18)" }}>
         {principles.map((p, i) => (
           <div
             key={p.n}
@@ -50,14 +50,14 @@ export default function Engineering() {
               paddingRight: i % 2 === 0 ? "var(--cell-indent)" : 0,
               paddingLeft: i % 2 === 1 ? "var(--cell-indent)" : 0,
               borderRight: i % 2 === 0 ? "var(--rule-v)" : "none",
-              borderBottom: i < 2 ? "1px solid rgba(26,23,18,.12)" : "none",
+              borderBottom: i < 2 ? "1px solid rgba(21,24,31,.12)" : "none",
             }}
           >
             <div style={{ fontFamily: "var(--font-serif)", fontSize: 30, color: "var(--accent)", marginBottom: 14 }}>{p.n}</div>
             <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 24, fontWeight: 500, margin: "0 0 10px", lineHeight: 1.15 }}>
               {p.t}
             </h3>
-            <p style={{ fontSize: 15, lineHeight: 1.62, color: "#4a443a", margin: 0, maxWidth: 460 }}>{p.d}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.62, color: "#444a56", margin: 0, maxWidth: 460 }}>{p.d}</p>
           </div>
         ))}
       </div>

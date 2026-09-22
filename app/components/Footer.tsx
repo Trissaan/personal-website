@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(26,23,18,.12)",
+        borderTop: "1px solid rgba(21,24,31,.12)",
         padding: "28px var(--pad-x)",
         maxWidth: 1280,
         margin: "0 auto",
@@ -12,7 +12,7 @@ export default function Footer() {
         gap: 12,
         flexWrap: "wrap",
         fontSize: 13,
-        color: "#8a8170",
+        color: "#7d8695",
       }}
     >
       <span>© 2026 Trissaan A Shanmugasundaram</span>

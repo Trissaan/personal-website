@@ -9,7 +9,7 @@ type Block = { cmd: string; out: OutLine[] };
 
 const BLOCKS: Block[] = [
   {
-    cmd: "python pipeline.py --raw data/",
+    cmd: "python odoo_sync.py --xmlrpc",
     out: [{ sym: "✓", symColor: GREEN, text: "15,000 records · gates passed" }],
   },
   {
@@ -172,7 +172,7 @@ export default function TerminalPanel() {
         borderRadius: 8,
         overflow: "hidden",
         background: "var(--code-bg)",
-        boxShadow: "0 24px 60px rgba(26,23,18,.16)",
+        boxShadow: "0 24px 60px rgba(21,24,31,.16)",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "13px 18px", borderBottom: "1px solid var(--code-titlebar)" }}>

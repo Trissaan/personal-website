@@ -77,9 +77,9 @@ export default function Nav() {
           padding: "13px 0",
           fontSize: 16,
           fontWeight: 500,
-          color: isActive ? "var(--accent)" : "#1a1712",
+          color: isActive ? "var(--accent)" : "#15181f",
           textDecoration: "none",
-          borderBottom: "1px solid rgba(26,23,18,.07)",
+          borderBottom: "1px solid rgba(21,24,31,.07)",
         }}
       >
         {l}
@@ -94,10 +94,10 @@ export default function Nav() {
         top: 0,
         zIndex: 50,
         padding: "22px var(--pad-x)",
-        background: "rgba(245,242,234,.82)",
+        background: "rgba(242,243,246,.82)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(26,23,18,.1)",
+        borderBottom: "1px solid rgba(21,24,31,.1)",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -107,7 +107,7 @@ export default function Nav() {
 
         <div
           className="nav-links"
-          style={{ gap: 34, fontSize: 13.5, fontWeight: 500, letterSpacing: ".01em", color: "#5c554a" }}
+          style={{ gap: 34, fontSize: 13.5, fontWeight: 500, letterSpacing: ".01em", color: "#555c6a" }}
         >
           {links.map(desktopLink)}
         </div>
@@ -139,7 +139,7 @@ export default function Nav() {
             padding: 6,
             margin: 0,
             cursor: "pointer",
-            color: "#1a1712",
+            color: "#15181f",
             lineHeight: 0,
             alignItems: "center",
           }}
