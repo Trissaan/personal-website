@@ -65,7 +65,7 @@ a {
   --accent-soft: #8ea9f0; /* lighter accent for use on dark backgrounds */
 
   /* Density rhythm multiplier:  1.3 airy · 1 balanced · 0.7 compact */
-  --d: 0.6;
+  --d: 0.5;
 
   /* Responsive layout knobs — overridden in the media queries at the
      bottom of this file. Components reference these inline so a single
